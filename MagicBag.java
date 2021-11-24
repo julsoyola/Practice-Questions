@@ -19,20 +19,20 @@ class Main {
    // Write your code here
     PriorityQueue<Integer> maxValue = new PriorityQueue<>(Collections.reverseOrder());
     
-    //nlog(n)
+    // nlog(n)
     for(int i : arr) {
       maxValue.add(i);
     }
-    
-    
-    //klog(k);
+    // klog(k);
     int sum = 0;
     while(k > 0) {
+      // gets the head and deletes it
       int cur =  maxValue.poll();
       sum += cur;
       maxValue.add(cur/2);
+      // decerement the mins
       k--;
     }
-    
+   
     return sum;
   }
