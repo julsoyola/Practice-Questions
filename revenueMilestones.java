@@ -9,33 +9,25 @@ class Main {
   
 
   int[] getMilestoneDays(int[] revenues, int[] milestones) {
-  // Write your code here
-    int i=0,j=0;
-
-    PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[0] - b[0]);
-    for(int x : milestones)
-    {
-      pq.add(new int[]{x,i});
-      i++;
-      System.out.println(pq);
+ // Write your code here
+    int[] milestoneDays = new int[milestones.length];
+    Arrays.fill(milestoneDays, -1);
+    Map<Integer, Integer> idx = new HashMap<>();
+    for(int i=0; i<milestones.length; i++) {
+      idx.put(milestones[i], i);
     }
-    i = 0;
-    int n = revenues.length, m = milestones.length;
-    int[] res = new int[m];
-    int sum =0;
-    while(i < n && !pq.isEmpty())
-    {
+    
+    Arrays.sort(milestones);
+    
+    int j=0;
+    int sum = 0;
+    for(int i=0; i<revenues.length; i++) {
       sum += revenues[i];
-      while(!pq.isEmpty() && sum >= pq.peek()[0])
-      {
-        res[pq.poll()[1]] = i+1;
+      while(j < milestones.length && sum >= milestones[j]){
+        milestoneDays[idx.get(milestones[j])] = i+1;
+        j++;
       }
-      i++;
     }
-    while(!pq.isEmpty())
-    {
-      res[pq.poll()[1]] = -1;
-    }
-    return res;
+    return milestoneDays;
     
   }
