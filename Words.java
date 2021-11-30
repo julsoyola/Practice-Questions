@@ -1,7 +1,8 @@
 import java.io.*; 
 import java.util.*;
 // Add any extra import statements you may need here
-
+// You've devised a simple encryption method for alphabetic strings that shuffles 
+//   the characters in such a way that the resulting string is hard to quickly read, but is easy to convert back into the original string.
 
 class Main {
 
